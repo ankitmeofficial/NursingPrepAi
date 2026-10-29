@@ -1,14 +1,15 @@
 /**
- * Learn more about light and dark modes:
- * https://docs.expo.dev/guides/color-schemes/
+ * Provides theme colors and dark mode state based on active theme setting
  */
 
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useThemeContext } from '@/context/ThemeContext';
 
 export function useTheme() {
-  const scheme = useColorScheme();
-  const theme = scheme === 'dark' ? 'dark' : 'light';
+  const { colors } = useThemeContext();
+  return colors;
+}
 
-  return Colors[theme];
+export function useThemeInfo() {
+  const { isDark, colors, themeMode, setThemeMode } = useThemeContext();
+  return { isDark, colors, themeMode, setThemeMode };
 }
